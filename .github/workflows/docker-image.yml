@@ -19,7 +19,7 @@ jobs:
       with:
         image: patelprashantdds/getting-started
         tags: v1, latest
-        registry: registry-url.io
+        registry: docker.io
         dockerfile: Dockerfile
         username: patelprashantdds
         password: ${{ secrets.DOCKER_PASSWORD }}
