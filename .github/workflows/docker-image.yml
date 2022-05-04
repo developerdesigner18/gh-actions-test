@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag patelprashantdds/getting-started:$(date +%s)
+      run: docker build . --file Dockerfile --tag patelprashantdds/getting-started:latest
     - name: Push the Docker image
-      run: docker login -u patelprashantdds -p ${{secrets.DOCKER_TOKEN}} && docker push patelprashantdds/getting-started:$(date +%s)
+      run: docker login -u patelprashantdds -p ${{secrets.DOCKER_TOKEN}} && docker push patelprashantdds/getting-started:latest
