@@ -11,14 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-      name: Check out code
-
-    - uses: mr-smithers-excellent/docker-build-push@v5
-      name: Build & push Docker image
-      with:
-        image: patelprashantdds/getting-started
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: patelprashantdds
-        password: ${{ secrets.DOCKER_TOKEN }}
+    -
+        name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: patelprashantdds
+          password: ${{ secrets.DOCKER_TOKEN }}
+    -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: patelprashantdds/getting-started:latest
+          cache-from: type=registry,ref=patelprashantdds/getting-started:buildcache
+          cache-to: type=registry,ref=patelprashantdds/getting-started:buildcache,mode=max
