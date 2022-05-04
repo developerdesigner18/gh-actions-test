@@ -21,4 +21,4 @@ jobs:
         registry: docker.io
         dockerfile: Dockerfile
         username: patelprashantdds
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_TOKEN }}
